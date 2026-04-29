@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #090b10;
+    --surface: #11141d;
+    --surface-hover: #181d2a;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    
+    /* Silver Palette */
+    --silver-50: #f8fafc;
+    --silver-100: #f1f5f9;
+    --silver-200: #e2e8f0;
+    --silver-300: #cbd5e1;
+    --silver-400: #94a3b8;
+    --silver-500: #64748b;
+    
+    /* Blue Accents */
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.4);
+    
+    /* Text */
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+  }
+
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(circle at 50% 0%, rgba(30, 41, 59, 0.4) 0%, transparent 60%);
+    color: var(--text-primary);
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit), sans-serif;
+  }
+}
+
+@layer components {
+  .page-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 md:p-8 
+           transition-all duration-300 ease-out backdrop-blur-md relative overflow-hidden;
+  }
+
+  .card-hover:hover {
+    @apply border-[rgba(59,130,246,0.3)] shadow-[0_8px_30px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.1)] 
+           -translate-y-1;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg)];
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-[0_4px_14px_0_rgba(59,130,246,0.39)] 
+           hover:shadow-[0_6px_20px_rgba(59,130,246,0.23)] hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)]
+           hover:bg-[var(--border)] hover:border-[var(--border-strong)];
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-[var(--border-strong)] text-[var(--text-primary)]
+           hover:border-[var(--accent)] hover:text-white hover:bg-[rgba(59,130,246,0.05)];
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-md {
+    @apply px-6 py-2.5 text-base;
+  }
+
+  .btn-lg {
+    @apply px-8 py-3.5 text-lg;
+  }
+
+  /* Typography */
+  .heading-xl {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.1];
+  }
+  
+  .heading-lg {
+    @apply text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)];
+  }
+
+  .heading-md {
+    @apply text-3xl font-bold tracking-tight text-[var(--text-primary)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--silver-100)] to-[var(--silver-400)];
+  }
+
+  .text-gradient-blue {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600;
+  }
+
+  /* Form Inputs */
+  .input-field {
+    @apply w-full bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-3 text-[var(--text-primary)] 
+           placeholder:text-[var(--text-tertiary)] transition-colors duration-200
+           focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)];
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border;
+  }
+
+  .badge-blue {
+    @apply bg-blue-500/10 text-blue-400 border-blue-500/20;
+  }
+  
+  .badge-silver {
+    @apply bg-[var(--surface-hover)] text-[var(--text-secondary)] border-[var(--border)];
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .animate-fade-up-delay-1 {
+    animation-delay: 0.1s;
+  }
+  
+  .animate-fade-up-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-fade-up-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .glass-panel {
+    @apply bg-[rgba(17,20,29,0.7)] backdrop-blur-xl border-b border-[var(--border)];
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
