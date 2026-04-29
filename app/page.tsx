@@ -105,7 +105,7 @@ export default function Home() {
 
       {/* ── CTA BANNER ───────────────────────── */}
       <section className="animate-fade-up animate-fade-up-delay-3 max-w-5xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-16 md:py-20 text-center shadow-[0_8px_32px_rgba(29,78,216,0.22)]">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--surface-hover)] to-[var(--accent-glow)] px-8 py-16 md:py-20 text-center shadow-[0_8px_32px_rgba(29,78,216,0.18)]">
           {/* Decorative shapes */}
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
           <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
