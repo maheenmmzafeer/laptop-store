@@ -48,6 +48,7 @@ const laptops = [
 
 export default function Products() {
   return (
+    <main className="page-wrapper">
     <div className="space-y-10">
       
       <PageHeader 
@@ -79,5 +80,6 @@ export default function Products() {
       </div>
 
     </div>
+    </main>
   );
 }

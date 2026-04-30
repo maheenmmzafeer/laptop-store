@@ -18,8 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className="font-sans antialiased">
+        {/* Navbar floats above hero with fixed positioning handled inside Navbar */}
         <Navbar />
-        <main className="page-wrapper">{children}</main>
+        {children}
       </body>
     </html>
   );

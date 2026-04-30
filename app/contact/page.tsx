@@ -3,6 +3,7 @@ import Button from "../components/Button";
 
 export default function Contact() {
   return (
+    <main className="page-wrapper">
     <div className="max-w-5xl mx-auto space-y-12">
       <PageHeader 
         title="Get in Touch" 
@@ -84,5 +85,6 @@ export default function Contact() {
 
       </div>
     </div>
+    </main>
   );
 }

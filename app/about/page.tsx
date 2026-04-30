@@ -1,5 +1,6 @@
 export default function About() {
   return (
+    <main className="page-wrapper">
     <div className="flex flex-col items-center justify-center min-h-[70vh] animate-fade-up max-w-4xl mx-auto">
 
       <div className="card p-10 md:p-16 w-full flex flex-col items-center text-center relative overflow-hidden">
@@ -46,5 +47,6 @@ export default function About() {
 
       </div>
     </div>
+    </main>
   );
 }

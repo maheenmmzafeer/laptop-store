@@ -21,6 +21,7 @@ export default function Cart() {
   ];
 
   return (
+    <main className="page-wrapper">
     <div className="max-w-5xl mx-auto space-y-8">
       <PageHeader 
         title="Your Cart" 
@@ -121,5 +122,6 @@ export default function Cart() {
       )}
 
     </div>
+    </main>
   );
 }
