@@ -49,37 +49,36 @@ const laptops = [
 export default function Products() {
   return (
     <main className="page-wrapper">
-    <div className="space-y-10">
-      
-      <PageHeader 
-        title="Our Laptops" 
-        subtitle="Explore our curated collection of premium laptops. From ultra-light productivity machines to desktop-replacement gaming rigs."
-        badge="In Stock Now"
-      />
+      <div className="space-y-10">
 
-      {/* Filter Tabs (Static for MVP) */}
-      <div className="flex flex-wrap gap-3 mb-10 animate-fade-up">
-        {['All', 'Gaming', 'Professional', 'Ultrabook', 'Business', '2-in-1'].map((cat, i) => (
-          <button 
-            key={i}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              i === 0 
-                ? 'bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(59,130,246,0.39)]' 
-                : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-white'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+        <PageHeader
+          title="Our Laptops"
+          subtitle="Explore our curated collection of premium laptops. From ultra-light productivity machines to desktop-replacement gaming rigs."
+          badge="In Stock Now"
+        />
+
+        {/* Filter Tabs (Static for MVP) */}
+        <div className="flex flex-wrap gap-3 mb-10 animate-fade-up">
+          {['All', 'Gaming', 'Professional', 'Ultrabook', 'Business', '2-in-1'].map((cat, i) => (
+            <button
+              key={i}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${i === 0
+                  ? 'bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(59,130,246,0.39)]'
+                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-white'
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 animate-fade-up">
+          {laptops.map((l, i) => (
+            <ProductCard key={i} {...l} />
+          ))}
+        </div>
+
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 animate-fade-up">
-        {laptops.map((l, i) => (
-          <ProductCard key={i} {...l} />
-        ))}
-      </div>
-
-    </div>
     </main>
   );
 }

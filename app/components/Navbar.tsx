@@ -3,46 +3,53 @@ import Button from "./Button";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-panel">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
+      <div className="glass-nav rounded-[2rem] px-5 md:px-8 py-3">
+        <div className="flex items-center justify-between h-14">
           
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20 group-hover:border-blue-500/40 transition-colors">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6h16M4 12h10M4 18h7" stroke="currentColor" className="text-blue-500" strokeWidth="2.2" strokeLinecap="round"/>
-                <circle cx="19" cy="15" r="4" stroke="currentColor" className="text-blue-500" strokeWidth="2" fill="none"/>
-                <path d="M22 18l1.5 1.5" stroke="currentColor" className="text-blue-500" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </span>
-            <span className="text-xl font-bold tracking-tight font-outfit text-gradient">
+          {/* Brand Group */}
+          <Link href="/" className="flex items-center group cursor-pointer">
+            <span className="text-xl font-bold tracking-tight font-outfit text-white group-hover:text-blue-400 transition-colors duration-300">
               TechLaptops
             </span>
           </Link>
 
           {/* Nav Links */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link className="text-[var(--text-secondary)] hover:text-white transition-colors text-sm font-medium" href="/">Home</Link>
-            <Link className="text-[var(--text-secondary)] hover:text-white transition-colors text-sm font-medium" href="/products">Products</Link>
-            <Link className="text-[var(--text-secondary)] hover:text-white transition-colors text-sm font-medium" href="/about">About</Link>
-            <Link className="text-[var(--text-secondary)] hover:text-white transition-colors text-sm font-medium" href="/contact">Contact</Link>
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-1">
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Products', href: '/products' },
+                { label: 'About', href: '/about' },
+                { label: 'Contact', href: '/contact' },
+              ].map((link) => (
+                <Link 
+                  key={link.label}
+                  href={link.href}
+                  className="relative px-4 py-2 text-sm font-semibold text-slate-400 hover:text-white transition-all duration-300 group rounded-xl hover:bg-white/5"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
             
-            <div className="w-px h-6 bg-[var(--border)] mx-2"></div>
+            <div className="w-px h-6 bg-white/10 mx-1"></div>
 
-            {/* Cart CTA */}
-            <Button href="/cart" variant="primary" size="sm" className="gap-2 rounded-full px-5">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              Cart
-              <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-xs">0</span>
+            {/* Cart Button */}
+            <Button href="/cart" variant="primary" size="sm" className="gap-2 rounded-xl px-5 h-10 shadow-lg shadow-blue-900/20">
+              <div className="relative">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[9px] font-black text-blue-600">0</span>
+              </div>
+              <span className="hidden lg:inline text-xs uppercase tracking-widest font-black">Cart</span>
             </Button>
           </div>
 
-          {/* Mobile menu button (Simplified for MVP) */}
-          <div className="md:hidden flex items-center">
-            <button className="text-[var(--text-secondary)] hover:text-white">
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 text-white hover:bg-white/10 transition-colors">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
