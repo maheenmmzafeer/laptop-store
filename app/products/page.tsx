@@ -1,83 +1,51 @@
-import PageHeader from "../components/PageHeader";
-import ProductCard from "../components/ProductCard";
+"use client";
 
-const laptops = [
-  {
-    name: "MacBook Pro M3",
-    price: "$1,999",
-    category: "Professional",
-    rating: 5,
-    img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
-  },
-  {
-    name: "Dell XPS 15",
-    price: "$1,499",
-    category: "Ultrabook",
-    rating: 4,
-    img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-  },
-  {
-    name: "ASUS ROG Strix",
-    price: "$1,799",
-    category: "Gaming",
-    rating: 5,
-    img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
-  },
-  {
-    name: "ThinkPad X1 Carbon",
-    price: "$1,649",
-    category: "Business",
-    rating: 4,
-    img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302",
-  },
-  {
-    name: "Razer Blade 16",
-    price: "$2,499",
-    category: "Gaming",
-    rating: 5,
-    img: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5",
-  },
-  {
-    name: "HP Spectre x360",
-    price: "$1,399",
-    category: "2-in-1",
-    rating: 4,
-    img: "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
-  },
-];
+import { Navbar } from '@/components/layout/Navbar';
 
-export default function Products() {
+export default function ProductsPage() {
+  const products = [
+    { name: 'Tech Luxe Pro 14"', price: '$1,999', desc: 'The perfect balance of power and portability.' },
+    { name: 'Tech Luxe Pro 16"', price: '$2,499', desc: 'Maximum performance for the most demanding workflows.' },
+    { name: 'Tech Luxe Studio', price: '$3,499', desc: 'Desktop-class power in a mobile form factor.' },
+  ];
+
   return (
-    <main className="page-wrapper">
-      <div className="space-y-10">
-
-        <PageHeader
-          title="Our Laptops"
-          subtitle="Explore our curated collection of premium laptops. From ultra-light productivity machines to desktop-replacement gaming rigs."
-          badge="In Stock Now"
-        />
-
-        {/* Filter Tabs (Static for MVP) */}
-        <div className="flex flex-wrap gap-3 mb-10 animate-fade-up">
-          {['All', 'Gaming', 'Professional', 'Ultrabook', 'Business', '2-in-1'].map((cat, i) => (
-            <button
-              key={i}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${i === 0
-                  ? 'bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(59,130,246,0.39)]'
-                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-white'
-                }`}
-            >
-              {cat}
-            </button>
-          ))}
+    <main className="min-h-screen bg-tech-dark text-silver-100 selection:bg-silver-700 selection:text-white pt-32 px-8 md:px-24">
+      <Navbar />
+      
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-5xl md:text-7xl font-light mb-4">Our Lineup</h1>
+        <p className="text-silver-500 text-xl font-light mb-16 tracking-wide">Choose your weapon.</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {products.map((p, i) => {
+            const urls = [
+              'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+              'https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2',
+              'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2'
+            ];
+            const imgUrl = urls[i];
+            return (
+              <div key={i} className="bg-tech-darker border border-silver-900 rounded-3xl p-8 hover:border-silver-700 transition-all group cursor-pointer">
+                <div className="aspect-video bg-tech-dark rounded-xl mb-8 overflow-hidden relative flex items-center justify-center border border-silver-900/50">
+                  <img 
+                    src={imgUrl} 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen group-hover:scale-105 transition-transform duration-500" 
+                    alt={p.name} 
+                  />
+                </div>
+                <h2 className="text-2xl font-bold text-silver-100 mb-2">{p.name}</h2>
+                <p className="text-silver-300 mb-6 font-light">{p.desc}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-light">{p.price}</span>
+                  <button className="text-sm uppercase tracking-widest font-bold text-tech-dark bg-silver-100 px-6 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    Buy
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 animate-fade-up">
-          {laptops.map((l, i) => (
-            <ProductCard key={i} {...l} />
-          ))}
-        </div>
-
       </div>
     </main>
   );
