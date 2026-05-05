@@ -100,52 +100,47 @@ export function FrameSequenceHero() {
     gsap.set(text2Ref.current, { opacity: 0, x: 50 });
     gsap.set(text3Ref.current, { opacity: 0, y: 50 });
 
-    // Build the timeline sequence
-    tl.addLabel("start")
-      // Phase 1: Initial opening (Frames 0 to 12)
+    // Build the timeline sequence with resting state labels
+    tl.addLabel("start") // Frame 0, Initial Title Visible
+      
+      // Transition to Step 1
+      .to('.hero-title-group', { opacity: 0, y: -50, duration: 1 }, "start")
       .to(frameObj, {
         frame: 12,
         snap: "frame",
-        ease: "none",
+        ease: "power2.inOut",
         duration: 2,
         onUpdate: () => renderFrame(frameObj.frame)
       }, "start")
-      .to('.hero-title-group', { opacity: 0, y: -50, duration: 1 }, "start")
+      .to(text1Ref.current, { opacity: 1, scale: 1, duration: 1 }, "start+=1")
       
-      .addLabel("unleashed")
-      // Phase 2: Unleashed text appears (Frames 12 to 20)
-      .to(text1Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, "unleashed")
+      .addLabel("step1") // Frame 12, "UNLEASHED" Visible
+      
+      // Transition to Step 2
+      .to(text1Ref.current, { opacity: 0, scale: 1.2, duration: 1 }, "step1")
       .to(frameObj, {
-        frame: 20,
+        frame: 24,
         snap: "frame",
-        ease: "none",
+        ease: "power2.inOut",
         duration: 2,
         onUpdate: () => renderFrame(frameObj.frame)
-      }, "unleashed")
-      .to(text1Ref.current, { opacity: 0, scale: 1.2, duration: 0.5 }, "unleashed+=1.5")
+      }, "step1")
+      .to(text2Ref.current, { opacity: 1, x: 0, duration: 1 }, "step1+=1")
       
-      .addLabel("architecture")
-      // Phase 3: Architecture text appears (Frames 20 to 28)
-      .to(text2Ref.current, { opacity: 1, x: 0, duration: 0.5 }, "architecture")
-      .to(frameObj, {
-        frame: 28,
-        snap: "frame",
-        ease: "none",
-        duration: 2,
-        onUpdate: () => renderFrame(frameObj.frame)
-      }, "architecture")
-      .to(text2Ref.current, { opacity: 0, x: -50, duration: 0.5 }, "architecture+=1.5")
+      .addLabel("step2") // Frame 24, "Architecture" Visible
       
-      .addLabel("era")
-      // Phase 4: Final era text appears (Frames 28 to 36)
-      .to(text3Ref.current, { opacity: 1, y: 0, duration: 0.5 }, "era")
+      // Transition to Step 3
+      .to(text2Ref.current, { opacity: 0, x: -50, duration: 1 }, "step2")
       .to(frameObj, {
         frame: frameCount - 1,
         snap: "frame",
-        ease: "none",
+        ease: "power2.inOut",
         duration: 2,
         onUpdate: () => renderFrame(frameObj.frame)
-      }, "era");
+      }, "step2")
+      .to(text3Ref.current, { opacity: 1, y: 0, duration: 1 }, "step2+=1")
+      
+      .addLabel("step3"); // Frame 36, "Era" Visible
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
